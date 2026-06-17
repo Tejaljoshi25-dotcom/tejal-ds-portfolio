@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tejal Joshi | Data Scientist</title>
+    <!-- Icons & Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        /* Intro Overlay for Sound Permission */
+        #intro-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--bg-color); z-index: 9999;
+            display: flex; justify-content: center; align-items: center; flex-direction: column;
+            transition: opacity 0.5s;
+        }
+        .enter-btn {
+            padding: 15px 40px; font-size: 1.2em; background: var(--accent);
+            color: var(--bg-color); border: none; border-radius: 30px; cursor: pointer;
+            font-weight: bold; box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+        }
+
+        /* Hero Section */
+        header { min-height: 90vh; display: flex; align-items: center; justify-content: space-between; padding: 50px 0; position: relative; }
+        header::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 10% 20%, rgba(56, 189, 248, 0.1) 0%, transparent 20%); z-index: -1;
+        }
+        .hero-text { flex: 1; padding-right: 50px; }
+        .hero-text h1 { font-size: 4em; margin: 0; background: linear-gradient(to right, #fff, #38bdf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .quote { font-size: 1.2em; color: var(--accent); font-style: italic; margin-bottom: 10px; display: block; }
+        
+        /* Typing Effect Styles */
+        .typing-container { font-size: 1.5em; color: var(--text-muted); margin: 20px 0; font-weight: 300; min-height: 1.6em; }
+        .cursor { display: inline-block; width: 3px; background-color: var(--accent); animation: blink 1s infinite; }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        .hero-buttons { margin-top: 30px; }
+        .btn { display: inline-block; padding: 12px 30px; border-radius: 30px; font-weight: bold; margin-right: 15px; border: 2px solid var(--accent); }
+        .btn-primary { background: var(--accent); color: var(--bg-color); }
+        .btn-primary:hover { background: transparent; color: var(--accent); box-shadow: 0 0 15px var(--accent); }
+        .btn-outline { color: var(--accent); }
+        .btn-outline:hover { background: var(--accent); color: var(--bg-color); }
+
+        .hero-img-container { flex: 1; text-align: center; }
+        .profile-img { width: 350px; height: 350px; border-radius: 50%; object-fit: cover; border: 5px solid var(--accent); box-shadow: 0 0 30px rgba(56, 189, 248, 0.3); animation: float 6s ease-in-out infinite; }
+        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-20px); } 100% { transform: translateY(0px); } }
+
+        /* Sections */
+        section { padding: 80px 0; }
+        h2 { font-size: 2.5em; text-align: center; margin-bottom: 50px; color: var(--text-main); position: relative; }
+        h2::after { content: ''; display: block; width: 60px; height: 4px; background: var(--accent); margin: 10px auto; border-radius: 2px; }
+        
+        .about-content { text-align: center; max-width: 800px; margin: 0 auto; font-size: 1.2em; color: var(--text-muted); }
+        
+        /* Skills */
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+        .skill-category { background: var(--card-bg); padding: 30px; border-radius: 15px; border: 1px solid #334155; transition: 0.3s; }
+        .skill-category:hover { transform: translateY(-5px); border-color: var(--accent); }
+        .skill-category h3 { color: var(--accent); margin-top: 0; }
+        .skill-list { list-style: none; padding: 0; }
+        .skill-list li { margin-bottom: 10px; display: flex; align-items: center; }
+        .skill-list li i { margin-right: 10px; color: var(--accent); }
+
+        /* Hobbies */
+        .hobbies-grid { display: flex; justify-content: center; flex-wrap: wrap; gap: 40px; text-align: center; }
+        .hobby-item { background: var(--card-bg); padding: 20px 40px; border-radius: 50px; display: flex; align-items: center; gap: 15px; font-size: 1.1em; border: 1px solid #334155; }
+        .hobby-item i { font-size: 1.5em; color: var(--accent); }
+
+        /* Projects */
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .project-card { background: var(--card-bg); border-radius: 15px; overflow: hidden; border: 1px solid #334155; transition: 0.3s; display: flex; flex-direction: column; }
+        .project-card:hover { transform: translateY(-10px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .project-content { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; }
+        .project-content h3 { margin-top: 0; color: #fff; }
+        .project-link { margin-top: auto; color: var(--accent); font-weight: bold; display: inline-flex; align-items: center; gap: 5px; }
+        
+        .more-projects { text-align: center; margin-top: 50px; padding: 30px; background: rgba(56, 189, 248, 0.1); border-radius: 15px; }
+        .philosophy { text-align: center; font-style: italic; color: var(--text-muted); margin-top: 40px; font-size: 1.1em; }
+
+        /* Art Section */
+        .art-section { background: linear-gradient(45deg, #1e293b, #0f172a); border-radius: 20px; padding: 50px; display: flex; align-items: center; gap: 50px; flex-wrap: wrap; }
+        .art-text { flex: 1; }
+        .art-visual { flex: 1; text-align: center; font-size: 5em; color: var(--accent); animation: pulse 3s infinite; }
+        @keyframes pulse { 0% { opacity: 0.7; } 50% { opacity: 1; } 100% { opacity: 0.7; } }
+
+        /* Footer */
+        footer { text-align: center; padding: 60px 20px; border-top: 1px solid #334155; margin-top: 50px; }
+        .footer-quote { font-size: 1.5em; color: var(--accent); margin-bottom: 30px; font-family: 'Georgia', serif; }
+        .social-icons a { font-size: 2em; margin: 0 15px; color: var(--text-muted); }
+        .social-icons a:hover { color: var(--accent); transform: scale(1.2); display: inline-block; }
+
+        @media (max-width: 768px) {
+            header { flex-direction: column-reverse; text-align: center; }
+            .hero-text { padding-right: 0; }
+            .profile-img { width: 250px; height: 250px; margin-bottom: 30px; }
+            .hero-text h1 { font-size: 2.5em; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sound Permission Overlay -->
+    <div id="intro-overlay">
+        <h1 style="color: white; margin-bottom: 20px;">Tejal Joshi</h1>
+        <button class="enter-btn" onclick="startExperience()">Enter Portfolio 🔊</button>
+    </div>
+
+    <!-- Hidden Audio Element for Typing Sound -->
+    <audio id="typing-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-mechanical-keyboard-typing-1386.mp3"></audio>
+
+    <div class="container">
+        <!-- HERO SECTION -->
+        <header>
+            <div class="hero-text" data-aos="fade-right">
+                <span class="quote">"Every dataset has a story."</span>
+                <h1>Tejal Joshi</h1>
+                <!-- Typing Animation Container -->
+                <div class="typing-container">
+                    <span id="typing-text"></span><span class="cursor">|</span>
+                </div>
+                <p style="color: #94a3b8; max-width: 500px;">
+                    Turning raw data into actionable insights through storytelling and advanced analytics.
+                </p>
+                <div class="hero-buttons">
+                    <!-- UPDATED RESUME LINK -->
+                    <a href="Resume.pdf" class="btn btn-primary" download><i class="fas fa-download"></i> Download CV</a>
+                    <a href="#projects" class="btn btn-outline">View Projects</a>
+                </div>
+            </div>
+            <div class="hero-img-container" data-aos="zoom-in">
+                <!-- UPDATED PHOTO LINK (Change to profile.jpg if you renamed it correctly) -->
+                <img src="profile.jpg.png" alt="Tejal Joshi" class="profile-img">
+            </div>
+        </header>
+
+        <!-- ABOUT ME -->
+        <section id="about" data-aos="fade-up">
+            <h2>Meet Tejal</h2>
+            <div class="about-content">
+                <p>Hi, I'm Tejal Joshi. I believe every dataset has a story waiting to be uncovered. Backed by a multidisciplinary academic background and strong analytical and leadership skills, I enjoy decoding data, visualizing patterns, and extracting insights that drive understanding and decision-making.</p>
+            </div>
+        </section>
+
+        <!-- TECHNICAL ARSENAL -->
+        <section id="skills" data-aos="fade-up">
+            <h2>Technical Arsenal</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3><i class="fas fa-code"></i> Core Tech</h3>
+                    <ul class="skill-list">
+                        <li><i class="fab fa-python"></i> Python & Libraries</li>
+                        <li><i class="fas fa-database"></i> SQL</li>
+                        <li><i class="fas fa-brain"></i> Machine Learning</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-chart-line"></i> Analysis</h3>
+                    <ul class="skill-list">
+                        <li><i class="fas fa-chart-bar"></i> Data Visualization</li>
+                        <li><i class="fas fa-search"></i> Exploratory Data Analysis (EDA)</li>
+                        <li><i class="fas fa-broom"></i> Data Cleaning</li>
+                        <li><i class="fas fa-calculator"></i> Statistics</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-lightbulb"></i> Soft Skills</h3>
+                    <ul class="skill-list">
+                        <li><i class="fas fa-users"></i> Leadership & Communication</li>
+                        <li><i class="fas fa-puzzle-piece"></i> Problem Solving</li>
+                        <li><i class="fas fa-microscope"></i> Research & Analysis</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- BEYOND THE SCREEN -->
+        <section id="hobbies" data-aos="fade-up">
+            <h2>Beyond the Screen</h2>
+            <div class="hobbies-grid">
+                <div class="hobby-item"><i class="fas fa-music"></i> Music</div>
+                <div class="hobby-item"><i class="fas fa-book-open"></i> Reading</div>
+                <div class="hobby-item"><i class="fas fa-language"></i> Languages</div>
+                <div class="hobby-item"><i class="fas fa-plane"></i> Travelling</div>
+                <div class="hobby-item"><i class="fas fa-map-marked-alt"></i> Trekking</div>
+            </div>
+        </section>
+
+        <!-- PROJECT SHOWCASE -->
+        <section id="projects" data-aos="fade-up">
+            <h2>Project Showcase</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3>Used Car Price Prediction</h3>
+                        <p>ML model to predict used car prices with high accuracy using Python and Scikit-learn.</p>
+                        <a href="https://github.com/Tejaljoshi25-dotcom/used-car-price--analysis" target="_blank" class="project-link">View on GitHub <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3>Weather History EDA</h3>
+                        <p>Analyzed historical weather data to identify trends and visualize insights.</p>
+                        <a href="https://github.com/Tejaljoshi25-dotcom/weather-history-eda" target="_blank" class="project-link">View on GitHub <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3>Nasdaq Market Microstructure</h3>
+                        <p>Deep dive into market data structures and financial trend analysis.</p>
+                        <a href="https://github.com/Tejaljoshi25-dotcom/weather-history-eda" target="_blank" class="project-link">View on GitHub <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3>Supermarket Analysis</h3>
+                        <p>Retail data analysis to optimize sales and customer understanding.</p>
+                        <a href="https://github.com/Tejaljoshi25-dotcom/weather-history-eda" target="_blank" class="project-link">View on GitHub <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="more-projects">
+                <h3>Want to see more?</h3>
+                <a href="https://github.com/Tejaljoshi25-dotcom" target="_blank" class="btn btn-outline">Visit My GitHub Profile</a>
+            </div>
+            
+            <p class="philosophy">"Every project begins with understanding the problem, not just the data. My work is grounded in research, literature review, and analytical exploration before moving to implementation."</p>
+        </section>
+
+        <!-- WHERE ART MEETS DATA -->
+        <section id="art" data-aos="zoom-in">
+            <h2>Where Art Meets Data</h2>
+            <div class="art-section">
+                <div class="art-text">
+                    <h3>Hand Painting Project</h3>
+                    <p>A unique blend of creativity and logic. Explore how artistic patterns can be analyzed and replicated through data.</p>
+                    <div style="margin-top: 20px;">
+                        <a href="https://github.com/Tejaljoshi25-dotcom/HAND_PAINTING" target="_blank" class="btn btn-primary" style="margin-right: 10px;">GitHub</a>
+                        <a href="https://www.linkedin.com/feed/update/urn:li:activity:7464827614944313344/" target="_blank" class="btn btn-outline">LinkedIn Post</a>
+                    </div>
+                </div>
+                <div class="art-visual">
+                    <i class="fas fa-palette"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- THOUGHTS & INSIGHTS -->
+        <section id="blog" data-aos="fade-up">
+            <h2>Thoughts & Insights</h2>
+            <div style="text-align: center; max-width: 700px; margin: 0 auto;">
+                <p>Beyond projects, I explore AI and Data Science through writing—sharing ideas, observations, and lessons from my learning journey.</p>
+                <a href="https://www.blogger.com/u/1/blog/posts/3892804302056536137" target="_blank" class="btn btn-outline" style="margin-top: 20px;">Read My Articles <i class="fas fa-pen-nib"></i></a>
+            </div>
+        </section>
+
+        <!-- LET'S CONNECT -->
+        <footer>
+            <div class="footer-quote">"Every dataset has a story. I enjoy finding the ones hidden between the numbers."</div>
+            <div class="social-icons">
+                <a href="mailto:tejaljoshi1212@gmail.com"><i class="fas fa-envelope"></i></a>
+                <a href="https://github.com/Tejaljoshi25-dotcom" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/feed/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            </div>
+            <p style="margin-top: 30px; color: #64748b;">© 2026 Tejal Joshi. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize Scroll Animations
+        AOS.init({ duration: 1000, once: true, offset: 100 });
+
+        // Typing Effect Logic
+        const textToType = "Data Scientist | Data Analyst | Researcher";
+        const typingElement = document.getElementById("typing-text");
+        const typingSound = document.getElementById("typing-sound");
+        let index = 0;
+
+        function typeWriter() {
+            if (index < textToType.length) {
+                typingElement.innerHTML += textToType.charAt(index);
+                index++;
+                
+                // Play sound for each character (resetting time to allow rapid clicks)
+                typingSound.currentTime = 0; 
+                typingSound.play().catch(e => console.log("Audio play failed:", e));
+                
+                setTimeout(typeWriter, 100); // Speed of typing
+            }
+        }
+
+        function startExperience() {
+            document.getElementById("intro-overlay").style.opacity = "0";
+            setTimeout(() => {
+                document.getElementById("intro-overlay").style.display = "none";
+                typeWriter(); // Start typing after entering
+            }, 500);
+        }
+    </script>
+</body>
+</html>
