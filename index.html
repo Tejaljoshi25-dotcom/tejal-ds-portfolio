@@ -10,14 +10,12 @@
     <style>
         :root {
             --primary-dark: #0f172a;
-            --secondary-dark: #1e293b;
             --accent-blue: #2563eb;
             --accent-purple: #7c3aed;
             --text-main: #334155;
             --text-light: #64748b;
             --bg-off-white: #f8fafc;
             --white: #ffffff;
-            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
             --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
             --radius-lg: 16px;
         }
@@ -32,19 +30,12 @@
             line-height: 1.7;
         }
 
-        /* --- BACKGROUND ANIMATION CONTAINER --- */
+        /* --- BACKGROUND ANIMATION --- */
         #particles-js {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0; left: 0;
-            z-index: 0;
-            opacity: 0.8; /* Increased visibility */
+            position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 0; opacity: 0.8;
         }
 
         .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
-        
-        /* INCREASED SECTION SPACING */
         section { padding: 160px 0; }
         
         h1, h2, h3 { color: var(--primary-dark); font-weight: 800; letter-spacing: -0.03em; }
@@ -71,7 +62,7 @@
         }
         .btn-outline:hover { border-color: var(--accent-blue); color: var(--accent-blue); transform: translateY(-3px); }
 
-        /* --- 1. HERO SECTION (FULL SCREEN + ANIMATION) --- */
+        /* --- 1. HERO SECTION (BALANCED) --- */
         .hero {
             min-height: 100vh; display: flex; align-items: center;
             background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%);
@@ -85,34 +76,25 @@
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
         .hero-value-prop {
-            font-size: 1.3rem; color: var(--text-light); margin-bottom: 2.5rem;
+            font-size: 1.3rem; color: var(--text-light); margin-bottom: 2rem;
             max-width: 580px; font-weight: 500;
         }
 
-        /* MOVING TICKER / RUNNING LINE */
+        /* COMPACT MOVING TICKER */
         .ticker-wrap {
-            width: 100%;
-            overflow: hidden;
+            width: 100%; overflow: hidden;
             background: var(--primary-dark);
-            padding: 12px 0;
-            margin-bottom: 2.5rem;
-            border-radius: 8px;
-            box-shadow: var(--shadow-md);
-            position: relative;
+            padding: 10px 0; margin-bottom: 2.5rem;
+            border-radius: 8px; box-shadow: var(--shadow-md);
         }
         .ticker {
-            display: inline-block;
-            white-space: nowrap;
-            animation: ticker 20s linear infinite;
+            display: inline-block; white-space: nowrap;
+            animation: ticker 25s linear infinite;
         }
         .ticker-item {
-            display: inline-block;
-            padding: 0 2rem;
-            font-size: 1.1rem;
-            color: white;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
+            display: inline-block; padding: 0 2rem;
+            font-size: 1rem; color: white; font-weight: 700;
+            letter-spacing: 0.08em; text-transform: uppercase;
         }
         .ticker-item i { color: var(--accent-blue); margin-right: 8px; }
         @keyframes ticker {
@@ -121,9 +103,10 @@
         }
 
         .hero-image-wrap { position: relative; display: flex; justify-content: center; }
+        /* RESTORED PHOTO SIZE */
         .profile-img {
             width: 400px; height: 480px; object-fit: cover;
-            border-radius: 200px 200px 20px 20px; /* Modern Arch Shape */
+            border-radius: 200px 200px 20px 20px;
             box-shadow: var(--shadow-md); position: relative; z-index: 2;
             border: 8px solid var(--white);
         }
@@ -158,7 +141,7 @@
         .toolkit-card {
             background: var(--white); border: 1px solid #e2e8f0;
             border-radius: var(--radius-lg); padding: 40px 32px; 
-            transition: all 0.3s ease; box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
             position: relative; overflow: hidden;
         }
         .toolkit-card::before {
@@ -187,7 +170,7 @@
         .personality-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; max-width: 1000px; margin: 0 auto; }
         .personality-card {
             background: var(--white); border: 1px solid #e2e8f0;
-            border-radius: var(--radius-lg); padding: 40px; box-shadow: var(--shadow-sm);
+            border-radius: var(--radius-lg); padding: 40px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
         }
         .personality-card h3 { font-size: 1.5rem; margin-bottom: 24px; display: flex; align-items: center; gap: 12px; color: var(--primary-dark); }
         .skill-list { list-style: none; display: flex; flex-direction: column; gap: 16px; }
@@ -209,7 +192,7 @@
         .project-card {
             background: var(--white); border: 1px solid #e2e8f0;
             border-radius: var(--radius-lg); overflow: hidden; transition: all 0.3s ease;
-            box-shadow: var(--shadow-sm); display: flex; flex-direction: column;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); display: flex; flex-direction: column;
         }
         .project-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-md); border-color: var(--accent-blue); }
         .project-img { width: 100%; height: 240px; object-fit: cover; transition: 0.5s; }
@@ -313,10 +296,10 @@
         <div id="particles-js"></div>
         <div class="container hero-grid">
             <div class="hero-content" data-aos="fade-right" data-aos-duration="1000">
-                <h1>Decoding Data, Discovering Insights.</h1>
+                <h1>Decoding Data,<br>Discovering Insights.</h1>
                 <p class="hero-value-prop">Turning complex datasets into clear business strategies through rigorous research and advanced analytics.</p>
                 
-                <!-- MOVING TICKER / RUNNING LINE -->
+                <!-- COMPACT MOVING TICKER -->
                 <div class="ticker-wrap">
                     <div class="ticker">
                         <span class="ticker-item"><i class="fas fa-database"></i> Data Scientist</span>
@@ -519,15 +502,15 @@
     <script>
         AOS.init({ duration: 800, once: true, offset: 100 });
 
-        // Premium Data Science Particles (Darker/More Visible)
+        // Premium Data Science Particles
         particlesJS('particles-js', {
             particles: {
                 number: { value: 80, density: { enable: true, value_area: 800 } },
                 color: { value: "#2563eb" },
                 shape: { type: "circle" },
-                opacity: { value: 0.6, random: true }, /* Increased Opacity */
-                size: { value: 4, random: true }, /* Slightly Larger */
-                line_linked: { enable: true, distance: 160, color: "#2563eb", opacity: 0.3, width: 1.5 }, /* Darker Lines */
+                opacity: { value: 0.6, random: true },
+                size: { value: 4, random: true },
+                line_linked: { enable: true, distance: 160, color: "#2563eb", opacity: 0.3, width: 1.5 },
                 move: { enable: true, speed: 1.2, direction: "none", random: false, straight: false, out_mode: "out", bounce: false }
             },
             interactivity: { detect_on: "canvas", events: { onhover: { enable: true, mode: "grab" }, onclick: { enable: true, mode: "push" }, resize: true } },
